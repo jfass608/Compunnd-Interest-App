@@ -51,25 +51,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:fontFamily="monospace"
+                android:inputType="numberDecimal"
+                android:text="0"
+                android:textColor="#F44336" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/calculate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:onClick="calculateAmount"
-                android:text="Calculate"
-                android:textColor="#F44336"
-                android:textSize="18sp" />
-        </LinearLayout>
+            android:orientation="vertical"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,14 +69,79 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/finalAmount"
+                android:id="@+id/interestRate"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:text="Interest Rate"
+                android:textColor="#F44336"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="230dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="monospace"
+                android:inputType="number"
+                android:text="0"
+                android:textColor="#F44336" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:text="Years"
+                android:textColor="#F44336"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/timeAmt"
+                android:layout_width="145dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="monospace"
+                android:inputType="number"
+                android:textColor="#F44336"
+                tools:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="monospace"
-                android:text="Final Amount"
+                android:text="Number of Times Compounded"
                 android:textColor="#F44336"
                 android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/cmpAmt"
+                android:layout_width="370dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:fontFamily="monospace"
+                android:inputType="number"
+                android:textColor="#F44336"
+                tools:text="0" />
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

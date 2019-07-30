@@ -15,21 +15,19 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private EditText initialBalance;
-    private TextView finalAmount;
-    private Button calculate;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialBalance = (EditText) findViewById(R.id.initialBalance);
-        finalAmount = (TextView) findViewById(R.id.finalAmount);
-        calculate = (Button) findViewById(R.id.calculate);
+
+
     }
 
-    public void calculateAmount(View view) {
-        finalAmount.setText(initialBalance.getText().toString());
-    }
+
 
 
 }
