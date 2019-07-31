@@ -7,6 +7,8 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText initialBalance;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText timeAmt;
     private EditText cmpAmt;
     private TextView finalAmt;
+    private EditText monthAmt;
 
 
 
@@ -26,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
         timeAmt = (EditText) findViewById(R.id.timeAmt);
         cmpAmt = (EditText) findViewById(R.id.cmpAmt);
         finalAmt = (TextView) findViewById(R.id.finalAmt);
-        cmpAmt.addTextChangedListener(new TextWatcher() {
+        monthAmt = (EditText) findViewById(R.id.monthAmt);
+
+        monthAmt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 return;
@@ -47,11 +52,34 @@ public class MainActivity extends AppCompatActivity {
     private void calcFinalAmount() {
         double start = Double.parseDouble(initialBalance.getText().toString());
         double rate = Double.parseDouble(interestRate.getText().toString());
+        rate = rate / 100;
         int time = Integer.parseInt(timeAmt.getText().toString());
         int cmp = Integer.parseInt(cmpAmt.getText().toString());
         double finalCalc = 1 + (rate / cmp);
         finalCalc = Math.pow(finalCalc,cmp*time);
         finalCalc *= start;
-        finalAmt.setText("In " + time +  " years you will have $" + finalCalc + ".");
+        double monthContr = calcFutureAmt();
+        finalCalc += monthContr;
+        DecimalFormat df = new DecimalFormat("#.##");
+        String finalC = "";
+        finalC = df.format(finalCalc);
+        finalAmt.setText("In " + time +  " years you will have $" + finalC + ".");
     }
+
+    private double calcFutureAmt() {
+        double monthContr = Double.parseDouble(monthAmt.getText().toString());
+        double rate = Double.parseDouble(interestRate.getText().toString());
+        rate = rate / 100;
+        int time = Integer.parseInt(timeAmt.getText().toString());
+        int cmp = Integer.parseInt(cmpAmt.getText().toString());
+        double finalCalc = 1 + (rate / cmp);
+        finalCalc = Math.pow(finalCalc,cmp*time);
+        finalCalc = finalCalc-1;
+        finalCalc = finalCalc / (rate/cmp);
+        finalCalc = finalCalc * (1 + rate/cmp);
+        finalCalc*=monthContr;
+        return finalCalc;
+    }
+
+
 }

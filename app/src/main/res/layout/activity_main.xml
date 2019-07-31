@@ -113,8 +113,8 @@
                 android:ems="10"
                 android:fontFamily="monospace"
                 android:inputType="number"
-                android:textColor="#F44336"
-                tools:text="0" />
+                android:text="0"
+                android:textColor="#F44336" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,19 +140,43 @@
                 android:ems="10"
                 android:fontFamily="monospace"
                 android:inputType="number"
-                android:textColor="#F44336"
-                tools:text="0" />
+                android:text="0"
+                android:textColor="#F44336" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="89dp"
+            android:layout_height="63dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="83dp"
+                android:layout_height="63dp"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:text="Montly Contribution"
+                android:textColor="#F44336"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/monthAmt"
+                android:layout_width="179dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/finalAmt"
                 android:layout_width="wrap_content"
-                android:layout_height="102dp"
+                android:layout_height="63dp"
                 android:layout_weight="1"
                 android:fontFamily="monospace"
                 android:text="In 0 years you will have $0.00"
@@ -160,5 +184,6 @@
                 android:textColor="#F44336"
                 android:textSize="24sp" />
         </LinearLayout>
+
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
