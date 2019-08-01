@@ -31,6 +31,23 @@ public class MainActivity extends AppCompatActivity {
         finalAmt = (TextView) findViewById(R.id.finalAmt);
         monthAmt = (EditText) findViewById(R.id.monthAmt);
 
+         cmpAmt.addTextChangedListener(new TextWatcher() {
+             @Override
+             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+             }
+
+             @Override
+             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calcFinalAmount();
+             }
+
+             @Override
+             public void afterTextChanged(Editable s) {
+
+             }
+         });
+
         monthAmt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -50,15 +67,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void calcFinalAmount() {
-        double start = Double.parseDouble(initialBalance.getText().toString());
-        double rate = Double.parseDouble(interestRate.getText().toString());
-        rate = rate / 100;
-        int time = Integer.parseInt(timeAmt.getText().toString());
-        int cmp = Integer.parseInt(cmpAmt.getText().toString());
+        double start = 0;
+        if (!initialBalance.getText().toString().equals("")) {
+            start = Double.parseDouble(initialBalance.getText().toString());
+        }
+
+        double rate = 0;
+        if (!interestRate.getText().toString().equals("")) {
+            rate = Double.parseDouble(interestRate.getText().toString());
+            rate = rate / 100;
+        }
+
+
+        int time = 0;
+        if (!timeAmt.getText().toString().equals("")) {
+            time = Integer.parseInt(timeAmt.getText().toString());
+        }
+
+        int cmp = 0;
+        if (!cmpAmt.getText().toString().equals("")) {
+            String test = cmpAmt.getText().toString();
+            cmp = Integer.parseInt(cmpAmt.getText().toString());
+        }
+
+        if (cmp==0) {
+            cmpAmt.setError("You must enter a compounding value.");
+            return;
+        }
+
         double finalCalc = 1 + (rate / cmp);
         finalCalc = Math.pow(finalCalc,cmp*time);
         finalCalc *= start;
-        double monthContr = calcFutureAmt();
+        double monthContr = calcFutureAmt(rate, time, cmp);
         finalCalc += monthContr;
         DecimalFormat df = new DecimalFormat("#.##");
         String finalC = "";
@@ -66,12 +106,16 @@ public class MainActivity extends AppCompatActivity {
         finalAmt.setText("In " + time +  " years you will have $" + finalC + ".");
     }
 
-    private double calcFutureAmt() {
-        double monthContr = Double.parseDouble(monthAmt.getText().toString());
-        double rate = Double.parseDouble(interestRate.getText().toString());
-        rate = rate / 100;
-        int time = Integer.parseInt(timeAmt.getText().toString());
-        int cmp = Integer.parseInt(cmpAmt.getText().toString());
+    private double calcFutureAmt(double rate, int time, int cmp) {
+        double monthContr = 0;
+        if (monthAmt.getText().toString() != null) {
+            monthContr = Double.parseDouble(monthAmt.getText().toString());
+        }
+
+        if (monthContr == 0) {
+            return 0;
+        }
+
         double finalCalc = 1 + (rate / cmp);
         finalCalc = Math.pow(finalCalc,cmp*time);
         finalCalc = finalCalc-1;
@@ -80,6 +124,4 @@ public class MainActivity extends AppCompatActivity {
         finalCalc*=monthContr;
         return finalCalc;
     }
-
-
 }
