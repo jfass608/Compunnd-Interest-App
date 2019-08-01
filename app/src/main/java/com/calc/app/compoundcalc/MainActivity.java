@@ -31,6 +31,57 @@ public class MainActivity extends AppCompatActivity {
         finalAmt = (TextView) findViewById(R.id.finalAmt);
         monthAmt = (EditText) findViewById(R.id.monthAmt);
 
+        initialBalance.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calcFinalAmount();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        interestRate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calcFinalAmount();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        timeAmt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calcFinalAmount();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
          cmpAmt.addTextChangedListener(new TextWatcher() {
              @Override
              public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -78,6 +129,11 @@ public class MainActivity extends AppCompatActivity {
             rate = rate / 100;
         }
 
+        if (rate == 0) {
+            interestRate.setError("You must enter an interest rate.");
+            return;
+        }
+
 
         int time = 0;
         if (!timeAmt.getText().toString().equals("")) {
@@ -86,12 +142,12 @@ public class MainActivity extends AppCompatActivity {
 
         int cmp = 0;
         if (!cmpAmt.getText().toString().equals("")) {
-            String test = cmpAmt.getText().toString();
             cmp = Integer.parseInt(cmpAmt.getText().toString());
         }
 
         if (cmp==0) {
             cmpAmt.setError("You must enter a compounding value.");
+            finalAmt.setText("In " + time + " years you will have $0.00.");
             return;
         }
 
@@ -108,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
     private double calcFutureAmt(double rate, int time, int cmp) {
         double monthContr = 0;
-        if (monthAmt.getText().toString() != null) {
+        if (!monthAmt.getText().toString().equals("")) {
             monthContr = Double.parseDouble(monthAmt.getText().toString());
         }
 

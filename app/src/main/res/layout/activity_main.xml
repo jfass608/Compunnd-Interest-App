@@ -52,9 +52,10 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:fontFamily="monospace"
+                android:hint="Enter starting amount"
                 android:inputType="numberDecimal"
-                android:text="0"
-                android:textColor="#F44336" />
+                android:textColor="#F44336"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -85,9 +86,10 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:fontFamily="monospace"
+                android:hint="Enter interest rate"
                 android:inputType="number"
-                android:text="0"
-                android:textColor="#F44336" />
+                android:textColor="#F44336"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,9 +114,10 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:fontFamily="monospace"
+                android:hint="Enter years "
                 android:inputType="number"
-                android:text="0"
-                android:textColor="#F44336" />
+                android:textColor="#F44336"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -139,9 +142,10 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:fontFamily="monospace"
+                android:hint="Enter times compounded"
                 android:inputType="number"
-                android:text="0"
-                android:textColor="#F44336" />
+                android:textColor="#F44336"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,7 +169,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:fontFamily="monospace"
+                android:hint="Enter monthly addition"
+                android:inputType="number"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
